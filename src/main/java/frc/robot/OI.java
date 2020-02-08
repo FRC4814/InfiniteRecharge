@@ -11,6 +11,6 @@ public class OI{
 
 
     public OI(){
-        myController.setDeadzone(0.1);
+        myController.setDeadzone(0.15);
     }
 }

@@ -26,7 +26,9 @@ public class driveTrain extends SubsystemBase {
 
   public DifferentialDrive drive;
   private SpeedControllerGroup leftGroup, rightGroup;
-  Encoder leftEnc, rightEnc;
+  private double gearRatio = 20.00, distancePerPulse, pulsesPerRevolution = 4096;
+  private int wheelSize = 6;
+  public Encoder leftEnc, rightEnc;
 
   public DashboardVariable<Double>    kP = new DashboardVariable<Double>("kP", 0.00),
                                       kI = new DashboardVariable<Double>("kI", 0.00),
@@ -34,7 +36,7 @@ public class driveTrain extends SubsystemBase {
 
   public DashboardVariable<Boolean> driveStraight = new DashboardVariable<Boolean>("drive straight", false);
 
-  PID drivePID = new PID(leftEnc, rightEnc, kP.get(), kI.get(), kD.get());
+  PID drivePID;
 
   public driveTrain(){
 
@@ -42,11 +44,20 @@ public class driveTrain extends SubsystemBase {
     leftEnc.setMaxPeriod(0.2);
 
     rightEnc = new Encoder(RobotMap.RIGHT_ENCODER[0], RobotMap.RIGHT_ENCODER[1], true, EncodingType.k4X);
+    rightEnc.setMaxPeriod(0.2);
+
+    //calculate distance per pulse
+    distancePerPulse = (wheelSize * Math.PI) / (pulsesPerRevolution * gearRatio);
+
+    leftEnc.setDistancePerPulse(distancePerPulse);
+    rightEnc.setDistancePerPulse(distancePerPulse);
 
     leftGroup = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.LEFT_MOTORS[0]), new PWMVictorSPX(RobotMap.LEFT_MOTORS[1]), new PWMVictorSPX(RobotMap.LEFT_MOTORS[2]));
     rightGroup = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.RIGHT_MOTORS[0]), new PWMVictorSPX(RobotMap.RIGHT_MOTORS[1]), new PWMVictorSPX(RobotMap.RIGHT_MOTORS[2]));
 
     drive = new DifferentialDrive(leftGroup, rightGroup);
+
+    drivePID= new PID(leftEnc, rightEnc, kP.get(), kI.get(), kD.get());
   }
 
 

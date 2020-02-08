@@ -9,8 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.haloDriveCommand;
-import frc.robot.subsystems.driveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -21,10 +19,6 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final driveTrain m_driveTrain = new driveTrain();
-
-  private final haloDriveCommand m_dDriveCommand = new haloDriveCommand(m_driveTrain);
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

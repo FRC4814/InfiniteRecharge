@@ -7,11 +7,13 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.haloDriveCommand;
 import frc.robot.subsystems.driveTrain;
+import frc.robot.utils.DashboardVariable;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +23,10 @@ import frc.robot.subsystems.driveTrain;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+
+  public PowerDistributionPanel pdp;
+  private DashboardVariable<Double> totaVoltage = new DashboardVariable<Double>("total voltage", 0.00);
+  private DashboardVariable<Double> driveMotorCurrent = new DashboardVariable<Double>("drive motor current", 0.00);
 
   private RobotContainer m_robotContainer;
   public static driveTrain driveTrain = new driveTrain();
@@ -35,7 +41,10 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    
+    driveTrain.rightEnc.reset();
+    driveTrain.leftEnc.reset();
+
+    pdp = new PowerDistributionPanel(0);
   }
 
   /**
@@ -52,6 +61,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    totaVoltage.set(pdp.getVoltage());
+    driveMotorCurrent.set(pdp.getCurrent(15));
   }
 
   /**
