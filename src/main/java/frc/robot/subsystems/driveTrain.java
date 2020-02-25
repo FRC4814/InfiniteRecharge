@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.OI;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.utils.DashboardVariable;
 import frc.robot.utils.PID;
@@ -58,6 +59,11 @@ public class driveTrain extends SubsystemBase {
     drive = new DifferentialDrive(leftGroup, rightGroup);
 
     drivePID= new PID(leftEnc, rightEnc, kP.get(), kI.get(), kD.get());
+
+    Robot.targetX = Robot.table.getEntry("yaw");
+    Robot.targetY = Robot.table.getEntry("pitch");
+
+
   }
 
 
@@ -66,6 +72,20 @@ public class driveTrain extends SubsystemBase {
     double turn = OI.myController.getX(Hand.kRight);
     boolean isQuickTurn = false, isSlow = false;
 
+    Robot.rotationAdjust = 0.0;
+    Robot.distanceAdjust = 0.0;
+
+    if(OI.myController.getAButton()){
+      Robot.rotError = Robot.targetX.getDouble(0.0);
+      Robot.distError = Robot.targetY.getDouble(0.0);
+
+      Robot.rotationAdjust = Robot.kpRot*Robot.rotError;
+      Robot.distanceAdjust=Robot.kpDistance*Robot.distError;
+
+      drive.arcadeDrive(Robot.distanceAdjust, Robot.rotationAdjust);
+    }
+
+      
 
     //quick turn logic
     if(throttle < 0.25){

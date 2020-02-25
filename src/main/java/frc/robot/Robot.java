@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.haloDriveCommand;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.utils.DashboardVariable;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,6 +31,10 @@ public class Robot extends TimedRobot {
   private DashboardVariable<Double> totaVoltage = new DashboardVariable<Double>("total voltage", 0.00);
   private DashboardVariable<Double> driveMotorCurrent = new DashboardVariable<Double>("drive motor current", 0.00);
 
+  public static NetworkTable cameraTable;
+  public static NetworkTableInstance table;
+  public static NetworkTableEntry yaw, pitch, isDriverMode;
+
   private RobotContainer m_robotContainer;
   public static driveTrain driveTrain = new driveTrain();
 
@@ -40,6 +47,19 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    // Gets the default instance of NetworkTables
+    table = NetworkTableInstance.getDefault();
+
+    // Gets the MyCamName table under the chamelon-vision table
+    // MyCamName will vary depending on the name of your camera
+    cameraTable = table.getTable("chameleon-vision").getSubTable("MyCamName");
+
+    // Gets the yaw to the target from the cameraTable
+    yaw = cameraTable.getEntry("yaw");
+
+    // Gets the driveMode boolean from the cameraTable
+    isDriverMode = cameraTable.getEntry("driver_mode");
 
     driveTrain.rightEnc.reset();
     driveTrain.leftEnc.reset();
