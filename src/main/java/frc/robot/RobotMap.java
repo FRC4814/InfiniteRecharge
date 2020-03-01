@@ -18,7 +18,7 @@ public class RobotMap
 	// used to map out the pins aka ports used by different parts of the robot
 	// PWM
 	public static final int[] LEFT_MOTORS = { 1, 2, 3 };
-	public static final int[] RIGHT_MOTORS = { 4, 5, 6 };
+	public static final int[] RIGHT_MOTORS = {7, 8, 9};
 
 	public static final int[] LEFT_ENCODER = {0, 1};
 	public static final int[] RIGHT_ENCODER = {2, 3};

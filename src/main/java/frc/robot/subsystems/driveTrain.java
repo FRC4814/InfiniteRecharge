@@ -60,9 +60,6 @@ public class driveTrain extends SubsystemBase {
 
     drivePID= new PID(leftEnc, rightEnc, kP.get(), kI.get(), kD.get());
 
-    Robot.targetX = Robot.table.getEntry("yaw");
-    Robot.targetY = Robot.table.getEntry("pitch");
-
 
   }
 
@@ -76,8 +73,8 @@ public class driveTrain extends SubsystemBase {
     Robot.distanceAdjust = 0.0;
 
     if(OI.myController.getAButton()){
-      Robot.rotError = Robot.targetX.getDouble(0.0);
-      Robot.distError = Robot.targetY.getDouble(0.0);
+      Robot.rotError = Robot.yaw.getDouble(0.0);
+      Robot.distError = Robot.pitch.getDouble(0.0);
 
       Robot.rotationAdjust = Robot.kpRot*Robot.rotError;
       Robot.distanceAdjust=Robot.kpDistance*Robot.distError;

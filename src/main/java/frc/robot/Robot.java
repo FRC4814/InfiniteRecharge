@@ -33,7 +33,8 @@ public class Robot extends TimedRobot {
 
   public static NetworkTable cameraTable;
   public static NetworkTableInstance table;
-  public static NetworkTableEntry yaw, pitch, isDriverMode;
+  public static NetworkTableEntry yaw, pitch, isDriverMode, targetX, targetY;
+  public static double rotError, distError, kpRot = -0.1, kpDistance = -0.01, angleTolerance = 5, distanveTolerance = 5, rotationAdjust, distanceAdjust;   
 
   private RobotContainer m_robotContainer;
   public static driveTrain driveTrain = new driveTrain();
