@@ -18,7 +18,7 @@ public class intake extends SubsystemBase {
 
   public intake() {
 
-    intakeMotors = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.INTAKE_MOTOR));
+    intakeMotors = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.CAN_INTAKE_MOTOR));
 
   }
 
