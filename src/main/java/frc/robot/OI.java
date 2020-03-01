@@ -10,12 +10,13 @@ public class OI{
     public static CustomXboxController myController = new CustomXboxController(RobotMap.controllerPort);
     public static XboxControllerButton slowButton = new XboxControllerButton(myController, XboxButton.kBumperLeft);
 
+    public static boolean isShoot = false;
 
     public OI(){
         myController.setDeadzone(0.15);
 
         if(myController.getTriggerAxis(Hand.kRight) > 0.5){
-            
+            isShoot = true;
         }
     }
 }

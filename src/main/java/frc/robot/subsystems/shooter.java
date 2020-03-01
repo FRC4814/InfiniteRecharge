@@ -7,18 +7,25 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class shooter extends SubsystemBase {
 
+  public SpeedControllerGroup shooterMotors;
 
 
   public shooter() {
+
 
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void setSpeed(int speed){
+    
   }
 }

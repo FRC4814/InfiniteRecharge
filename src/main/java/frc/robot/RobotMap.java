@@ -27,6 +27,7 @@ public class RobotMap
 	
 	//CAN
 	public static final int CAN_SHOOTER_MOTOR = 0;
+	
 
 	// USB
 	public static final int controllerPort = 0;
