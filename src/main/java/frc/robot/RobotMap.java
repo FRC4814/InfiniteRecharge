@@ -19,7 +19,7 @@ public class RobotMap
 	// PWM
 	public static final int[] LEFT_MOTORS = { 1, 2, 3 };
 	public static final int[] RIGHT_MOTORS = {7, 8, 9};
-	public static final int PWM_SHOOTER_MOTOR = 3;
+	public static final int INTAKE_MOTOR = 3;
 
 	//DIO
 	public static final int[] LEFT_ENCODER = {0, 1};
@@ -27,11 +27,8 @@ public class RobotMap
 	
 	//CAN
 	public static final int CAN_SHOOTER_MOTOR = 0;
-<<<<<<< HEAD
 	
-=======
 	public static final int CAN_CLIMBER_MOTOR = 3;////
->>>>>>> 32814ffba0000b996de0ba99e111672bbe4aea0c
 
 	// USB
 	public static final int controllerPort = 0;
