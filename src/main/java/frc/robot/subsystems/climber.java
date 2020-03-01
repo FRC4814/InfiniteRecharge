@@ -7,27 +7,24 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.RobotMap;
 
-public class intake extends SubsystemBase {
-  
-  public SpeedControllerGroup intakeMotors;
+public class climber extends SubsystemBase {
+  public SpeedControllerGroup climberMotors;
 
-  public intake() {
-
-    intakeMotors = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.INTAKE_MOTOR));
-
+  public climber() {
+    climberMotors = new SpeedControllerGroup(new VictorSP(RobotMap.CAN_SHOOTER_MOTOR));
   }
 
   public void setSpeed(double speed) {
-    intakeMotors.set(speed);
+    climberMotors.set(speed);
   }
 
   @Override
   public void periodic() {
-
+    // This method will be called once per scheduler run
   }
 }
