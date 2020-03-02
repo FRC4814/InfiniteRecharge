@@ -19,7 +19,7 @@ public class RobotMap
 	// PWM
 	public static final int[] LEFT_MOTORS = { 1, 2, 3 };
 	public static final int[] RIGHT_MOTORS = {7, 8, 9};
-	public static final int INTAKE_MOTOR = 3;
+	public static final int SHOOTER_MOTOR = 3;
 
 	//DIO
 	public static final int[] LEFT_ENCODER = {0, 1};

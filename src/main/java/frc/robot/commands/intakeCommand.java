@@ -7,13 +7,17 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.OI;
+import frc.robot.subsystems.intake;
 
-public class intake extends CommandBase {
+public class intakeCommand extends CommandBase {
   /**
    * Creates a new intake.
    */
-  public intake() {
+  private intake intake;
+  public intakeCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     
   }
@@ -26,6 +30,7 @@ public class intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    intake.setSpeed(OI.myController.getTriggerAxis(Hand.kLeft));
   }
 
   // Called once the command ends or is interrupted.
@@ -36,6 +41,9 @@ public class intake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(!OI.isIntake){
+      return true;
+    }
     return false;
   }
 }

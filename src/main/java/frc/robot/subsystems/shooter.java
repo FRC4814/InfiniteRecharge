@@ -7,25 +7,32 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
 public class shooter extends SubsystemBase {
 
-  public SpeedControllerGroup shooterMotors;
+  public VictorSPX shooterMotor1;
+  public PWMVictorSPX shooterMotor2;
 
 
   public shooter() {
-
+    shooterMotor1 = new VictorSPX(RobotMap.CAN_SHOOTER_MOTOR);
+    shooterMotor2 = new PWMVictorSPX(RobotMap.SHOOTER_MOTOR);
 
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    
   }
 
-  public void setSpeed(int speed){
-    
+  public void startShooting(){
+    shooterMotor1.set(ControlMode.PercentOutput, 100);
+    shooterMotor2.set(1);
   }
 }

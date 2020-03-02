@@ -16,10 +16,8 @@ public class shooterCommand extends CommandBase {
    * Creates a new shooterCommand.
    */
   private shooter shooter;
-  public shooterCommand(shooter shooter) {
-    this.shooter = shooter;
+  public shooterCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +29,7 @@ public class shooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setSpeed(1);
+    shooter.startShooting();
   }
 
   // Called once the command ends or is interrupted.
