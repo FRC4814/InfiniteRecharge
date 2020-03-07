@@ -21,7 +21,7 @@ public class climber extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    climberMotor.set(ControlMode.PercentOutput, 100);
+    climberMotor.set(ControlMode.PercentOutput, 50);
   }
 
   @Override
