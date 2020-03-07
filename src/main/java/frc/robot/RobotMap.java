@@ -27,7 +27,9 @@ public class RobotMap
 	//CAN
 	public static final int[] CAN_SHOOTER_MOTOR = {0, 1};
 	
-	public static final int CAN_INTAKE_MOTOR = 1;
+	public static final int CAN_INTAKE_MOTOR = 2;
+
+	public static final int CAN_CLIMBER_MOTOR = 3;
 	// USB
 	public static final int controllerPort = 0;
 	

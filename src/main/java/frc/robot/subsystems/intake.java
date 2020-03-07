@@ -7,27 +7,23 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class intake extends SubsystemBase {
   
-  public SpeedControllerGroup intakeMotors;
+  public VictorSPX intakeMotors;
 
   public intake() {
 
-    intakeMotors = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.CAN_INTAKE_MOTOR));
+    intakeMotors = new VictorSPX(RobotMap.CAN_INTAKE_MOTOR);
 
   }
 
   public void setSpeed(double speed) {
-    intakeMotors.set(speed);
-  }
-
-  @Override
-  public void periodic() {
-
+    intakeMotors.set(ControlMode.PercentOutput, 75);
   }
 }

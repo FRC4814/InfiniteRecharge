@@ -7,20 +7,21 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.RobotMap;
 
 public class climber extends SubsystemBase {
-  public SpeedControllerGroup climberMotors;
+  public static VictorSPX climberMotor;
 
   public climber() {
-    climberMotors = new SpeedControllerGroup(new VictorSP(RobotMap.CAN_SHOOTER_MOTOR));
+    climberMotor = new VictorSPX(RobotMap.CAN_CLIMBER_MOTOR);
   }
 
   public void setSpeed(double speed) {
-    climberMotors.set(speed);
+    climberMotor.set(ControlMode.PercentOutput, 100);
   }
 
   @Override
