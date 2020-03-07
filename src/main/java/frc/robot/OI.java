@@ -1,11 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.intakeCommand;
 import frc.robot.commands.shooterCommand;
-import frc.robot.subsystems.shooter;
 import frc.robot.utils.CustomXboxController;
 import frc.robot.utils.XboxButton;
 import frc.robot.utils.XboxControllerButton;

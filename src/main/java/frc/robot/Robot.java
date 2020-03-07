@@ -29,12 +29,20 @@ public class Robot extends TimedRobot {
 
   public PowerDistributionPanel pdp;
   private DashboardVariable<Double> totaVoltage = new DashboardVariable<Double>("total voltage", 0.00);
-  private DashboardVariable<Double> driveMotorCurrent = new DashboardVariable<Double>("drive motor current", 0.00);
 
+  public static DashboardVariable<Double> driveMotorCurrentL1 = new DashboardVariable<Double>("drive motor current left 1", 0.00);
+  public static DashboardVariable<Double> driveMotorCurrentL2 = new DashboardVariable<Double>("drive motor current left 2", 0.00);
+  public static DashboardVariable<Double> driveMotorCurrentL3 = new DashboardVariable<Double>("drive motor current left 3", 0.00);
+  public static DashboardVariable<Double> driveMotorCurrentR1 = new DashboardVariable<Double>("drive motor current right 1", 0.00);
+  public static DashboardVariable<Double> driveMotorCurrentR2 = new DashboardVariable<Double>("drive motor current right 2", 0.00);
+  public static DashboardVariable<Double> driveMotorCurrentR3 = new DashboardVariable<Double>("drive motor current right 3", 0.00);
+  
   public static NetworkTable cameraTable;
+
   public static NetworkTableInstance table;
   public static NetworkTableEntry yaw, pitch, isDriverMode, targetX, targetY;
   public static double rotError, distError, kpRot = -0.1, kpDistance = -0.01, angleTolerance = 5, distanveTolerance = 5, rotationAdjust, distanceAdjust;   
+  public static boolean limitCurrent = false;
 
   private RobotContainer m_robotContainer;
   public static driveTrain driveTrain = new driveTrain();
@@ -85,7 +93,27 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     totaVoltage.set(pdp.getVoltage());
-    driveMotorCurrent.set(pdp.getCurrent(15));
+    driveMotorCurrentL1.set(pdp.getCurrent(15));
+    driveMotorCurrentL2.set(pdp.getCurrent(13));
+    driveMotorCurrentL3.set(pdp.getCurrent(14));
+
+    driveMotorCurrentR1.set(pdp.getCurrent(0));
+    driveMotorCurrentR2.set(pdp.getCurrent(1));
+    driveMotorCurrentR3.set(pdp.getCurrent(2));
+
+    long prevTime = 0;
+
+    if(System.nanoTime() - prevTime > 1000000000){
+      prevTime = System.nanoTime();
+      if(driveMotorCurrentL1.get() > 20 || driveMotorCurrentL2.get() > 20 || driveMotorCurrentL3.get() > 20 || driveMotorCurrentR1.get() > 20 || driveMotorCurrentR2.get() > 20 ||driveMotorCurrentR3.get() > 20 ){
+        limitCurrent = true;
+      }
+      else{
+        limitCurrent = false;
+      }
+    } 
+
+    
   }
 
   /**

@@ -7,8 +7,9 @@
 
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -53,9 +54,9 @@ public class driveTrain extends SubsystemBase {
     leftEnc.setDistancePerPulse(distancePerPulse);
     rightEnc.setDistancePerPulse(distancePerPulse);
 
-    leftGroup = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.LEFT_MOTORS[0]), new PWMVictorSPX(RobotMap.LEFT_MOTORS[1]), new PWMVictorSPX(RobotMap.LEFT_MOTORS[2]));
-    rightGroup = new SpeedControllerGroup(new PWMVictorSPX(RobotMap.RIGHT_MOTORS[0]), new PWMVictorSPX(RobotMap.RIGHT_MOTORS[1]), new PWMVictorSPX(RobotMap.RIGHT_MOTORS[2]));
-
+    leftGroup = new SpeedControllerGroup(new VictorSP(RobotMap.LEFT_MOTORS[0]), new VictorSP(RobotMap.LEFT_MOTORS[1]), new VictorSP(RobotMap.LEFT_MOTORS[2]));
+    rightGroup = new SpeedControllerGroup(new VictorSP(RobotMap.RIGHT_MOTORS[0]), new VictorSP(RobotMap.RIGHT_MOTORS[1]), new VictorSP(RobotMap.RIGHT_MOTORS[2]));
+    
     drive = new DifferentialDrive(leftGroup, rightGroup);
 
     drivePID= new PID(leftEnc, rightEnc, kP.get(), kI.get(), kD.get());
@@ -66,21 +67,23 @@ public class driveTrain extends SubsystemBase {
 
   public void curvDrive() {
     double throttle = OI.myController.getY(Hand.kLeft);
-    double turn = OI.myController.getX(Hand.kRight);
+    double turn = -OI.myController.getX(Hand.kRight)*0.6;
     boolean isQuickTurn = false, isSlow = false;
 
     Robot.rotationAdjust = 0.0;
     Robot.distanceAdjust = 0.0;
 
-    if(OI.myController.getAButton()){
-      Robot.rotError = Robot.yaw.getDouble(0.0);
-      Robot.distError = Robot.pitch.getDouble(0.0);
+    
 
-      Robot.rotationAdjust = Robot.kpRot*Robot.rotError;
-      Robot.distanceAdjust=Robot.kpDistance*Robot.distError;
+    // if(OI.myController.getAButton()){
+    //   Robot.rotError = Robot.yaw.getDouble(0.0);
+    //   Robot.distError = Robot.pitch.getDouble(0.0);
 
-      drive.arcadeDrive(Robot.distanceAdjust, Robot.rotationAdjust);
-    }
+    //   Robot.rotationAdjust = Robot.kpRot*Robot.rotError;
+    //   Robot.distanceAdjust=Robot.kpDistance*Robot.distError;
+
+    //   drive.arcadeDrive(Robot.distanceAdjust, Robot.rotationAdjust);
+    // }
 
       
 
@@ -95,7 +98,7 @@ public class driveTrain extends SubsystemBase {
     if(OI.slowButton.get()) {
       isSlow = true;
     }
-    if(isSlow){
+    if(isSlow||Robot.limitCurrent){
       drive.curvatureDrive(throttle/3, turn, isQuickTurn);
     }else{
       drive.curvatureDrive(throttle, turn, isQuickTurn);
