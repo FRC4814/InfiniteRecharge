@@ -12,31 +12,29 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class shooterCommand extends CommandBase {
+public class climberCommand extends CommandBase {
   /**
-   * Creates a new shooterCommand.
+   * Creates a new climberCommand.
    */
-  public shooterCommand() {
+  public climberCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    Robot.climber.setSpeed(100);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.startShooting();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooter.shooterMotor1.set(ControlMode.PercentOutput,0);
-    Robot.shooter.shooterMotor2.set(ControlMode.PercentOutput,0);
+    Robot.climber.climberMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.

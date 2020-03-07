@@ -1,6 +1,6 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+import frc.robot.commands.climberCommand;
 import frc.robot.commands.intakeCommand;
 import frc.robot.commands.shooterCommand;
 import frc.robot.utils.CustomXboxController;
@@ -11,19 +11,19 @@ public class OI{
 
     public static CustomXboxController myController = new CustomXboxController(RobotMap.controllerPort);
     public static XboxControllerButton slowButton = new XboxControllerButton(myController, XboxButton.kBumperLeft);
+    public static XboxControllerButton shootButton = new XboxControllerButton(myController, XboxButton.kButtonB);
+    public static XboxControllerButton intakeButton = new XboxControllerButton(myController, XboxButton.kButtonA);
+    public static XboxControllerButton climbButton = new XboxControllerButton(myController, XboxButton.kButtonY);
 
     public static boolean isShoot = false, isIntake = false;
 
     public OI(){
         myController.setDeadzone(0.15);
 
-        if(myController.getTriggerAxis(Hand.kLeft) > 0.5){
-            isIntake = true;
-            new intakeCommand();
-        }
-        if(myController.getTriggerAxis(Hand.kRight) > 0.5){
-            isShoot = true;
-            new shooterCommand();
-        }
+        shootButton.whileHeld(new shooterCommand());
+
+        intakeButton.whileHeld(new intakeCommand());
+
+        climbButton.whileHeld(new climberCommand());
     }
 }

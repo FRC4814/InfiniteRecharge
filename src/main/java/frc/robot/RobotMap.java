@@ -25,9 +25,10 @@ public class RobotMap
 	public static final int[] RIGHT_ENCODER = {2, 3};
 	
 	//CAN
-	public static final int[] CAN_SHOOTER_MOTOR = {0, 1};
+	public static final int[] CAN_SHOOTER_MOTOR = {3, 5};
 	
-	public static final int CAN_INTAKE_MOTOR = 2;
+	public static final int CAN_INTAKE_MOTOR = 6;
+	public static final int CAN_HOPPER_MOTOR =2;
 
 	public static final int CAN_CLIMBER_MOTOR = 3;
 	// USB

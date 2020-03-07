@@ -15,15 +15,18 @@ import frc.robot.RobotMap;
 
 public class intake extends SubsystemBase {
   
-  public VictorSPX intakeMotors;
+  public VictorSPX intakeMotors, hopperMotor;
+
 
   public intake() {
 
     intakeMotors = new VictorSPX(RobotMap.CAN_INTAKE_MOTOR);
+    hopperMotor = new VictorSPX(RobotMap.CAN_HOPPER_MOTOR);
 
   }
 
   public void setSpeed(double speed) {
     intakeMotors.set(ControlMode.PercentOutput, 75);
+    hopperMotor.set(ControlMode.PercentOutput, -50);
   }
 }

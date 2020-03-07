@@ -31,7 +31,7 @@ public class shooter extends SubsystemBase {
   }
 
   public void startShooting(){
-    shooterMotor1.set(ControlMode.PercentOutput, 100);
-    shooterMotor2.set(ControlMode.PercentOutput, 100);
+    shooterMotor1.set(ControlMode.PercentOutput, -50);
+    shooterMotor2.set(ControlMode.PercentOutput, -50);
   }
 }

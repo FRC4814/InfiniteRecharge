@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class climber extends SubsystemBase {
-  public static VictorSPX climberMotor;
+  public VictorSPX climberMotor;
 
   public climber() {
     climberMotor = new VictorSPX(RobotMap.CAN_CLIMBER_MOTOR);

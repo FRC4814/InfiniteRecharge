@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.haloDriveCommand;
+import frc.robot.subsystems.climber;
 import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.intake;
+import frc.robot.subsystems.shooter;
 import frc.robot.utils.DashboardVariable;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -46,6 +49,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public static driveTrain driveTrain = new driveTrain();
+  public static shooter shooter = new shooter();
+  public static intake intake = new intake();
+  public static climber climber = new climber();
 
   /**
    * This function is run when the robot is first started up and should be used for any

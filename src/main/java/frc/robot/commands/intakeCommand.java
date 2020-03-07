@@ -7,16 +7,17 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
-import frc.robot.subsystems.intake;
+import frc.robot.Robot;
 
 public class intakeCommand extends CommandBase {
   /**
    * Creates a new intake.
    */
-  private intake intake;
   public intakeCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     
@@ -30,20 +31,19 @@ public class intakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.setSpeed(OI.myController.getTriggerAxis(Hand.kLeft));
+    Robot.intake.setSpeed(OI.myController.getTriggerAxis(Hand.kLeft));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.intake.intakeMotors.set(ControlMode.PercentOutput, 0);
+    Robot.intake.hopperMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!OI.isIntake){
-      return true;
-    }
     return false;
   }
 }
