@@ -5,10 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.autoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.driveBothPIDCommand;
 
 public class autoCrossStartLine extends CommandBase {
   /**
@@ -18,8 +19,7 @@ public class autoCrossStartLine extends CommandBase {
   public autoCrossStartLine() {
     // Use addRequirements() here to declare subsystem dependencies.
     
-    sequentialCommands.addCommands(new DriveBothPIDCommands(15.0, 15.0, 0.9));
-    
+    sequentialCommands.addCommands(new driveBothPIDCommand(15.0, 15.0, 0.9));
   }
 
   // Called when the command is initially scheduled.

@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.autoCommands;
+package frc.robot.commands;
 
-import java.lang.module.ModuleDescriptor.Requires;
+// import java.lang.module.ModuleDescriptor.Requires;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 // import frc.robot.Robot;
 import frc.robot.Robot;
 
-public class DriveBothPIDCommand extends CommandBase {
+public class driveBothPIDCommand extends CommandBase {
 	double targetSetpointL, targetSetpointR;
 	double currentSetpointL, currentSetpointR;
 	double speedL, speedR;
@@ -21,12 +21,12 @@ public class DriveBothPIDCommand extends CommandBase {
    * Creates a new DriveBothPIDCommand.
    */
 
-  public DriveBothPIDCommand(double targetSetpointL, double targetSetpointR) {
+  public driveBothPIDCommand(double targetSetpointL, double targetSetpointR) {
     // Use addRequirements() here to declare subsystem dependencies.
     this(targetSetpointL, targetSetpointR, 0.4);
   }
 
-  public DriveBothPIDCommand(double targetSetpointL, double targetSetpointR, double speed) {
+  public driveBothPIDCommand(double targetSetpointL, double targetSetpointR, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     
 
@@ -83,8 +83,10 @@ public class DriveBothPIDCommand extends CommandBase {
     //if (isFinished())
 		//	Robot.pidArm.disable();
 
-		Robot.driveTrain.resetSpeedLimit();
-		Robot.driveTrain.setSpeed(0.0, 0.0);
+    // Robot.driveTrain.resetSpeedLimit();
+    
+    Robot.driveTrain.drive.tankDrive(0.0 , 0.0);
+    // Robot.driveTrain.leftGroup.setSpeed(0);
 
 		Robot.driveTrain.setSetpoint(targetSetpointL, targetSetpointR);
 
