@@ -8,21 +8,16 @@ public class PID{
                     kI = 0.00, 
                     kD = 0.00;
     double integral, prevError = 0, setPoint = 0, error, rcw;
-    int wheelSize = 6, pulsesPerRevolution = 20;
     double delta, derivitive;
-    Encoder leftEnc, rightEnc;
+    Encoder Enc;
 
-    public PID(Encoder lEncoder, Encoder rEncoder, double kP, double kI, double kD){
-        leftEnc = lEncoder;
-        rightEnc = rEncoder;
+    public PID(Encoder Encoder, double kP, double kI, double kD){
+        Enc = Encoder;
 
         this.kP  = kP;
         this.kI = kI;
         this.kD = kD;
 
-        
-
-        PIDStuff();
     }
 
     public void setSetPoint(int toSet){
@@ -39,9 +34,13 @@ public class PID{
         return rcw;
     }
 
+    public void enablePID(){
+        PIDStuff();
+    }
+
     private void PIDStuff(){
         //math behind PID
-        delta = leftEnc.getDistance() - rightEnc.getDistance();
+        delta = Enc.getDistance();
         error = setPoint - (delta);
         integral = error * 0.2;
         derivitive = (error - prevError) / 0.2;

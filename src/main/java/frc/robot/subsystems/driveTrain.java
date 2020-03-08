@@ -38,7 +38,7 @@ public class driveTrain extends SubsystemBase {
 
   public DashboardVariable<Boolean> driveStraight = new DashboardVariable<Boolean>("drive straight", false);
 
-  PID drivePID;
+  PID drivePIDR, drivePIDL;
 
   public driveTrain(){
 
@@ -59,9 +59,20 @@ public class driveTrain extends SubsystemBase {
     
     drive = new DifferentialDrive(leftGroup, rightGroup);
 
-    drivePID= new PID(leftEnc, rightEnc, kP.get(), kI.get(), kD.get());
+    drivePIDL = new PID(leftEnc, kP.get(), kI.get(), kD.get());
+    drivePIDR= new PID(rightEnc, kP.get(), kI.get(), kD.get());
 
 
+  }
+
+  public void enablePID(){
+    drivePIDR.enablePID();
+    drivePIDL.enablePID();
+  }
+
+  public void setSetpoint(int targetSetpointL, int targetSetpointR){
+    drivePIDR.setSetPoint(targetSetpointL);
+    drivePIDR.setSetPoint(targetSetpointR);
   }
 
 
