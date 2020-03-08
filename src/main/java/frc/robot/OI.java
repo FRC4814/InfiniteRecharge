@@ -13,7 +13,7 @@ public class OI{
     public static XboxControllerButton slowButton = new XboxControllerButton(myController, XboxButton.kBumperLeft);
     public static XboxControllerButton shootButton = new XboxControllerButton(myController, XboxButton.kButtonB);
     public static XboxControllerButton hopperButton = new XboxControllerButton(myController, XboxButton.kButtonA);
-    public static XboxControllerButton climbButton = new XboxControllerButton(myController, XboxButton.kButtonY);
+    public static XboxControllerButton climbButton = new XboxControllerButton(myController, XboxButton.kButtonStart);
 
     public static boolean isShoot = false, isIntake = false;
 

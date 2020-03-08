@@ -28,7 +28,7 @@ public class driveTrain extends SubsystemBase {
 
   public DifferentialDrive drive;
   private SpeedControllerGroup leftGroup, rightGroup;
-  private double gearRatio = 20.00, distancePerPulse, pulsesPerRevolution = 4096;
+  private double distancePerPulse, pulsesPerRevolution = 4096;
   private int wheelSize = 6;
   public Encoder leftEnc, rightEnc;
 
@@ -49,7 +49,7 @@ public class driveTrain extends SubsystemBase {
     rightEnc.setMaxPeriod(0.2);
 
     //calculate distance per pulse
-    distancePerPulse = (wheelSize * Math.PI) / (pulsesPerRevolution * gearRatio);
+    distancePerPulse = (wheelSize * Math.PI) / (pulsesPerRevolution);
 
     leftEnc.setDistancePerPulse(distancePerPulse);
     rightEnc.setDistancePerPulse(distancePerPulse);

@@ -67,9 +67,6 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    CommandScheduler.getInstance().setDefaultCommand(driveTrain, new haloDriveCommand(driveTrain));
-    CommandScheduler.getInstance().setDefaultCommand(intake, new intakeCommand());
-
     intake = new intake();
 
     // Gets the default instance of NetworkTables
@@ -168,7 +165,8 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
 
-    
+    CommandScheduler.getInstance().setDefaultCommand(driveTrain, new haloDriveCommand(driveTrain));
+    CommandScheduler.getInstance().setDefaultCommand(intake, new intakeCommand());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
