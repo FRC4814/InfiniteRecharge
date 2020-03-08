@@ -70,7 +70,7 @@ public class driveTrain extends SubsystemBase {
     drivePIDL.enablePID();
   }
 
-  public void setSetpoint(int targetSetpointL, int targetSetpointR){
+  public void setSetpoint(double targetSetpointL, double targetSetpointR){
     drivePIDR.setSetPoint(targetSetpointL);
     drivePIDR.setSetPoint(targetSetpointR);
   }

@@ -20,7 +20,7 @@ public class PID{
 
     }
 
-    public void setSetPoint(int toSet){
+    public void setSetPoint(double toSet){
         this.setPoint = toSet;
     }
 
