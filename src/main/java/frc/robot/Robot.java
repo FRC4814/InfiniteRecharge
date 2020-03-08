@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.haloDriveCommand;
+import frc.robot.commands.intakeCommand;
 import frc.robot.subsystems.climber;
 import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.hopper;
 import frc.robot.subsystems.intake;
 import frc.robot.subsystems.shooter;
 import frc.robot.utils.DashboardVariable;
@@ -50,8 +52,9 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static driveTrain driveTrain = new driveTrain();
   public static shooter shooter = new shooter();
-  public static intake intake = new intake();
+  public static intake intake;
   public static climber climber = new climber();
+  public static hopper hopper = new hopper();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -63,6 +66,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    intake = new intake();
 
     // Gets the default instance of NetworkTables
     table = NetworkTableInstance.getDefault();
@@ -161,7 +166,7 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
 
     CommandScheduler.getInstance().setDefaultCommand(driveTrain, new haloDriveCommand(driveTrain));
-    
+    CommandScheduler.getInstance().setDefaultCommand(intake, new intakeCommand());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

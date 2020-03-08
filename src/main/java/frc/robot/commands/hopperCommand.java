@@ -9,36 +9,33 @@ package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.OI;
 import frc.robot.Robot;
 
-public class intakeCommand extends CommandBase {
+public class hopperCommand extends CommandBase {
   /**
-   * Creates a new intake.
+   * Creates a new hopperCommand.
    */
-  public intakeCommand() {
+  public hopperCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.hopper.setSpeed();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.setSpeed(OI.myController.getTriggerAxis(Hand.kLeft));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    Robot.hopper.hopperMotor.set(ControlMode.PercentOutput, 0);
+    Robot.hopper.hopperMotor2.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.

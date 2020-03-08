@@ -66,8 +66,8 @@ public class driveTrain extends SubsystemBase {
 
 
   public void curvDrive() {
-    double throttle = OI.myController.getY(Hand.kLeft);
-    double turn = -OI.myController.getX(Hand.kRight)*0.6;
+    double throttle = -OI.myController.getY(Hand.kLeft);
+    double turn = OI.myController.getX(Hand.kRight)*0.6;
     boolean isQuickTurn = false, isSlow = false;
 
     Robot.rotationAdjust = 0.0;

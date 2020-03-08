@@ -7,21 +7,19 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class climber extends SubsystemBase {
-  public VictorSPX climberMotor;
+  public PWMVictorSPX climberMotor;
 
   public climber() {
-    climberMotor = new VictorSPX(RobotMap.CAN_CLIMBER_MOTOR);
+    climberMotor = new PWMVictorSPX(RobotMap.CLIMBER_MOTOR);
   }
 
   public void setSpeed(double speed) {
-    climberMotor.set(ControlMode.PercentOutput, 50);
+    climberMotor.set(0.75);
   }
 
   @Override

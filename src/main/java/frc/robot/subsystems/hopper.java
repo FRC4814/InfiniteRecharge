@@ -11,24 +11,22 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.OI;
 import frc.robot.RobotMap;
-import frc.robot.commands.intakeCommand;
 
-public class intake extends SubsystemBase {
-  /**
-   * Creates a new intake.
-   */
+public class hopper extends SubsystemBase {
+  
+  public VictorSPX hopperMotor2, hopperMotor;
 
-   public VictorSPX intakeMotor = new VictorSPX(RobotMap.CAN_INTAKE_MOTOR);
-  public intake() {
+
+  public hopper() {
+
+    hopperMotor2 = new VictorSPX(RobotMap.CAN_HOPPER_MOTOR[1]);
+    hopperMotor = new VictorSPX(RobotMap.CAN_HOPPER_MOTOR[0]);
+
   }
 
-  @Override
-  public void periodic() {
-  }
-
-  public void setSpeed(double speed){
-    intakeMotor.set(ControlMode.PercentOutput, speed*-100);
+  public void setSpeed() {
+    hopperMotor2.set(ControlMode.PercentOutput, -75);
+    hopperMotor.set(ControlMode.PercentOutput, 20);
   }
 }
