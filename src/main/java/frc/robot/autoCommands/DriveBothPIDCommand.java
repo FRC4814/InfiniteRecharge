@@ -9,6 +9,7 @@ package frc.robot.autoCommands;
 
 import java.lang.module.ModuleDescriptor.Requires;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+// import frc.robot.Robot;
 import frc.robot.Robot;
 
 public class DriveBothPIDCommand extends CommandBase {
@@ -44,13 +45,16 @@ public class DriveBothPIDCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    addRequirements(Robot.driveTrain);
+
     currentSetpointL = 0.0;
 		currentSetpointR = 0.0;
 
 		onTarget = false;
 
     Robot.driveTrain.rightEnc.reset();
-    Robot.driveTrain.rightEnc.reset();
+    Robot.driveTrain.leftEnc.reset();
+    // Robot.driveTrain.drivePID;
 		Robot.driveTrain.enablePID();
 
 		System.out.println("Drive Init");
@@ -93,7 +97,6 @@ public class DriveBothPIDCommand extends CommandBase {
     if (targetSetpointL > 0)
 			return Robot.driveTrain.leftEnc.getDistance() >= targetSetpointL && Robot.driveTrain.rightEnc.getDistance() >= targetSetpointR;
     else
-    // not sure if supposed to be like this but right encoder is mentioned                   ^  V
 			return Robot.driveTrain.leftEnc.getDistance() <= targetSetpointL && Robot.driveTrain.rightEnc.getDistance() <= targetSetpointR;
   }
 }
