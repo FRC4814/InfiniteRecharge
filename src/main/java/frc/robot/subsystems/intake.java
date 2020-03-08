@@ -11,10 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.OI;
 import frc.robot.RobotMap;
-import frc.robot.commands.intakeCommand;
-
 public class intake extends SubsystemBase {
   /**
    * Creates a new intake.

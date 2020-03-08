@@ -2,7 +2,6 @@ package frc.robot;
 
 import frc.robot.commands.climberCommand;
 import frc.robot.commands.hopperCommand;
-import frc.robot.commands.intakeCommand;
 import frc.robot.commands.shooterCommand;
 import frc.robot.utils.CustomXboxController;
 import frc.robot.utils.XboxButton;
